@@ -3,7 +3,7 @@ import React from "react";
 import EventItem from "./EventItem";
 import { useNavigate } from "react-router-dom";
 
-function ListEvent() {
+function ListEvent({ data }) {
   const navigate = useNavigate();
   return (
     <Box mt={"120px"}>
@@ -11,63 +11,16 @@ function ListEvent() {
         <Box component={"img"} src="/img/event.png" />
       </Box>
       <Grid container mt={"40px"} spacing={4}>
-        <Grid item xs={3} onClick={() => navigate("/event/1")}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
-        <Grid item xs={3}>
-          <EventItem />
-        </Grid>
+        {data?.map((event) => (
+          <Grid
+            item
+            xs={3}
+            onClick={() => navigate(`/event/${event._id}-${event.typeEvent}`)}
+            key={event._id}
+          >
+            <EventItem event={event} />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

@@ -2,10 +2,12 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 import CardEvent from "./CardEvent";
+import { useNavigate } from "react-router-dom";
 
-function Recommended() {
+function Recommended({ recommend }) {
+  const navigate = useNavigate();
   return (
-    <Box id="recommended">
+    <Box id="recommended" mt={8}>
       <Box
         sx={{ cursor: "pointer" }}
         display={"flex"}
@@ -17,24 +19,16 @@ function Recommended() {
       </Box>
       <Box mt={2}>
         <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
-          <Grid item xs={4}>
-            <CardEvent />
-          </Grid>
+          {recommend?.map((event) => (
+            <Grid
+              item
+              xs={4}
+              key={event?._id}
+              onClick={() => navigate(`/event/${event._id}-${event.typeEvent}`)}
+            >
+              <CardEvent event={event} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </Box>

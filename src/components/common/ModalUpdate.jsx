@@ -16,7 +16,9 @@ const ModalUpdate = ({
   handleClose,
   handleOk,
   showCancel = true,
+  showOk = true,
   titleOk,
+  maxWidth,
 }) => {
   return (
     <Dialog
@@ -25,6 +27,7 @@ const ModalUpdate = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       fullWidth
+      maxWidth={maxWidth ? maxWidth : "sm"}
     >
       <Box component={"form"} onSubmit={handleOk}>
         <DialogTitle id="alert-dialog-title">
@@ -46,9 +49,16 @@ const ModalUpdate = ({
               Không đồng ý
             </Button>
           )}
-          <Button autoFocus onClick={handleOk} size="small" variant="contained">
-            {titleOk || "Đồng ý"}
-          </Button>
+          {showOk && (
+            <Button
+              autoFocus
+              onClick={handleOk}
+              size="small"
+              variant="contained"
+            >
+              {titleOk || "Đồng ý"}
+            </Button>
+          )}
         </DialogActions>
       </Box>
     </Dialog>
