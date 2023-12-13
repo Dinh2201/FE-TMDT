@@ -1,5 +1,5 @@
 import { Box, Paper, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import { useNavigate } from "react-router-dom";
 import ButtonCustom from "../components/common/ButtonCustom";
@@ -15,13 +15,21 @@ function Login() {
     e.preventDefault();
     try {
       const res = await login({ phone, password });
-      notify("success", "ÄÄƒng nháº­p thÃ nh cÃ´ng");
+      notify("success", "Đăng nhập thành công");
       localStorage.setItem("user", JSON.stringify(res.data));
       navigate("/");
     } catch (error) {
-      notify("error", error?.response?.data?.message || "Lá»—i Ä‘Äƒng nháº­p");
+      notify("error", error?.response?.data?.message || "Lỗi đăng nhập");
     }
   };
+
+  useEffect(() => {
+    const checkLogin = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) navigate("/");
+    };
+    checkLogin();
+  }, []);
 
   return (
     <Box
@@ -43,7 +51,7 @@ function Login() {
           >
             <ArrowBackIosOutlinedIcon
               sx={{ height: 20 }}
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
             />
             <Box
               position={"absolute"}

@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../components/layout/MainLayout";
 import Swipper from "../components/screens/guest-home/Swipper";
 import ListEvent from "../components/screens/guest-home/ListEvent";
-import { Box } from "@mui/material";
+import { getListEvent } from "../utils/api/event";
+import { useSearchParams } from "react-router-dom";
 
 function GuestHome() {
+  const [listEvent, setListEvent] = useState();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getListEvent({
+          permission: 1,
+          isApprove: 1,
+          name: searchParams.get("name") || "",
+        });
+        setListEvent(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, [searchParams.get("name")]);
+
   return (
     <MainLayout>
       <Swipper />
-      <ListEvent />
-      <Box display={"flex"} mt={8} gap={4} alignItems={"center"}>
+      <ListEvent data={listEvent} />
+      {/* <Box display={"flex"} mt={8} gap={4} alignItems={"center"}>
         <Box
           width={"100%"}
           height={"2px"}
@@ -38,7 +58,7 @@ function GuestHome() {
           bgcolor="rgb(230, 235, 245)"
           flex={1}
         />
-      </Box>
+      </Box> */}
     </MainLayout>
   );
 }

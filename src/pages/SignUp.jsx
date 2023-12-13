@@ -1,5 +1,5 @@
 import { Box, Paper, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import { useNavigate } from "react-router-dom";
 import ButtonCustom from "../components/common/ButtonCustom";
@@ -16,19 +16,27 @@ function SignUp() {
     e.preventDefault();
     try {
       if (password !== confirmPassword)
-        return notify("warn", "Máº­t kháº©u nháº­p láº¡i khÃ´ng khá»›p");
+        return notify("warn", "Mật khẩu nhập lại không khớp");
       await create({ phone, password });
       setPhone("");
       setPassword("");
       setConfirmPassword("");
-      notify("success", "Táº¡o tÃ i khoáº£n má»›i thÃ nh cÃ´ng");
+      notify("success", "Tạo tài khoản mới thành công");
     } catch (error) {
       notify(
         "error",
-        error?.response?.data?.message || "ÄÄƒng kÃ­ tÃ i khoáº£n khÃ´ng thÃ nh cÃ´ng"
+        error?.response?.data?.message || "Đăng kí tài khoản không thành công"
       );
     }
   };
+
+  useEffect(() => {
+    const checkLogin = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) navigate("/");
+    };
+    checkLogin();
+  }, []);
 
   return (
     <Box
@@ -55,7 +63,7 @@ function SignUp() {
           >
             <ArrowBackIosOutlinedIcon
               sx={{ height: 20 }}
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
             />
             <Box
               position={"absolute"}
