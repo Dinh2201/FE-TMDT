@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EventLayout from "../components/layout/EventLayout";
 import { Box, Paper, TextField, Typography } from "@mui/material";
 import ButtonCustom from "../components/common/ButtonCustom";
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLogin = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) navigate("/login");
+    };
+    checkLogin();
+  }, []);
   return (
     <EventLayout>
       <Box position={"relative"}>
