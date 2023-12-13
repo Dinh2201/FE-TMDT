@@ -107,7 +107,7 @@ function Sidebar() {
           color={"rgb(96,103,120)"}
           lineHeight={"16px"}
         >
-          Ticketbox Co., Ltd
+          Ticketbox UTE System
         </Typography>
         <Typography
           mt={"4px"}
@@ -115,16 +115,7 @@ function Sidebar() {
           color={"rgb(96,103,120)"}
           lineHeight={"16px"}
         >
-          Legal representative: Tran Ngoc Thai Son
-        </Typography>
-        <Typography
-          mt={"4px"}
-          fontSize={"10px"}
-          color={"rgb(96,103,120)"}
-          lineHeight={"16px"}
-        >
-          Address: 3rd floor, Tower A, Viettel Building, 285 Cach Mang Thang
-          Tam, Ward 12, District 10, City. Ho Chi Minh
+          Address: 01 Võ Văn Ngân, Linh Chiểu, Thủ Đức, Thành phố Hồ Chí Minh
         </Typography>
         <Typography
           mt={"4px"}
@@ -133,16 +124,6 @@ function Sidebar() {
           lineHeight={"16px"}
         >
           Tel: 1900.6408 - Hotline: support@ticketbox.vn
-        </Typography>
-        <Typography
-          mt={"4px"}
-          fontSize={"10px"}
-          color={"rgb(96,103,120)"}
-          lineHeight={"16px"}
-        >
-          Business registration certificate number: 0313605444, first issued on
-          January 7, 2016 by the Department of Planning and Investment of Ho Chi
-          Minh City
         </Typography>
         <Box
           display={"flex"}

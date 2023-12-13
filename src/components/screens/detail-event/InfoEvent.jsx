@@ -5,13 +5,17 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import moment from "moment";
+import { listTypeEvent } from "../../../contstant/event";
 
-function InfoEvent() {
+function InfoEvent({ event }) {
   return (
     <Box>
       <Box
         component={"img"}
-        src="https://images.tkbcdn.com/1/1560/600/Upload/eventcover/2023/10/20/77CC60.jpg"
+        src={event?.image}
         width={"100%"}
         height={"50vh"}
         sx={{ objectFit: "cover" }}
@@ -21,20 +25,26 @@ function InfoEvent() {
           <Grid container>
             <Grid xs={6} item>
               <Typography fontSize={24} fontWeight={700}>
-                [HN] Hòa nhạc Cổ điển Quốc tế - Cello Fundamento 7 - Nhập Code:
-                "TEACHERDAY" Giảm Ngay 120K
+                {event?.name}
               </Typography>
-              <Box mt={2} display={"flex"} alignItems={"center"} gap={2}>
+              <Box mt={1} display={"flex"} alignItems={"center"} gap={2}>
                 <AccessTimeOutlinedIcon />
                 <Typography variant="subtitle2">
-                  Friday, 01 December 2023 (08:00 PM - 10:00 PM)
+                  {moment(event?.timeStart).format("DD/MM/YYYY")} -{" "}
+                  {moment(event?.timeEnd).format("DD/MM/YYYY")}
                 </Typography>
               </Box>
-              <Box mt={2} display={"flex"} alignItems={"center"} gap={2}>
+              <Box mt={1} display={"flex"} alignItems={"center"} gap={2}>
                 <LocationOnOutlinedIcon />
-                <Typography variant="subtitle2">
-                  Hanoi Opera House (Nhà hát lớn)
-                </Typography>
+                <Typography variant="subtitle2">{event?.address}</Typography>
+              </Box>
+              <Box mt={1} display={"flex"} alignItems={"center"} gap={2}>
+                <EmailOutlinedIcon />
+                <Typography variant="subtitle2">{event?.email}</Typography>
+              </Box>
+              <Box mt={1} display={"flex"} alignItems={"center"} gap={2}>
+                <PhoneAndroidOutlinedIcon />
+                <Typography variant="subtitle2">{event?.phone}</Typography>
               </Box>
             </Grid>
             <Grid xs={2}></Grid>
@@ -43,7 +53,7 @@ function InfoEvent() {
                 fullWidth
                 variant="contained"
                 size={"large"}
-                text={"Sold out"}
+                text={listTypeEvent[event?.typeEvent - 1]?.label}
               />
               <Box mt={2} display={"flex"} justifyContent={"space-between"}>
                 <Button
@@ -61,11 +71,6 @@ function InfoEvent() {
                 >
                   Follow
                 </Button>
-              </Box>
-              <Box mt={2}>
-                <Typography variant="subtitle2" textAlign={"center"}>
-                  552 Followers
-                </Typography>
               </Box>
             </Grid>
           </Grid>

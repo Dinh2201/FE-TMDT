@@ -5,36 +5,35 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, Chip } from "@mui/material";
-import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import { listTypeEvent } from "../../../contstant/event";
+import moment from "moment";
 
-export default function CardEvent() {
+export default function CardEvent({ event }) {
   return (
     <Card sx={{ width: "100%" }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={
-          "https://images.tkbcdn.com/1/780/300/Upload/eventcover/2023/11/29/352AE6.jpg?w=360&maxheight=137&mode=crop&anchor=topcenter"
-        }
-      />
+      <CardMedia sx={{ height: 140 }} image={event?.image} />
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
-          [Bến Thành] MINISHOW HỒ VĂN CƯỜNG Special guest: Phương Ý
+          {event?.name}
         </Typography>
         <Box display={"flex"} justifyContent={"space-between"}>
           <Box display={"flex"} gap={"2px"} alignItems={"center"}>
-            <AttachMoneyOutlinedIcon fontSize="20px" />
-            <Typography variant="subtitle2">300000</Typography>
+            <LocalPhoneOutlinedIcon fontSize="20px" />
+            <Typography variant="subtitle2">{event?.phone}</Typography>
           </Box>
           <Box display={"flex"} gap={"2px"} alignItems={"center"}>
             <DateRangeOutlinedIcon fontSize="20px" />
-            <Typography variant="subtitle2">08.12.2023</Typography>
+            <Typography variant="subtitle2">
+              {moment(event?.timeStart).format("DD.MM.YYYY")}
+            </Typography>
           </Box>
         </Box>
       </CardContent>
       <CardActions>
-        <Chip label="Live Music" color="error" />
-        <Chip label="Hồ Chí Minh" color="success" />
+        <Chip label={listTypeEvent[event?.typeEvent - 1].label} color="error" />
+        <Chip label={event?.address} color="success" />
       </CardActions>
     </Card>
   );

@@ -1,7 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
+import { listTypeEvent } from "../../../contstant/event";
 
-function EventItem() {
+function EventItem({ event }) {
   return (
     <Box
       sx={{
@@ -14,16 +15,14 @@ function EventItem() {
     >
       <Box
         component={"img"}
-        src={
-          "https://images.tkbcdn.com/1/780/300/Upload/eventcover/2023/11/08/2F7C72.jpg"
-        }
+        src={event?.image}
         width={"100%"}
         height={140}
         sx={{ objectFit: "cover", borderRadius: "8px" }}
       />
       <Stack>
         <Typography fontSize={18} lineHeight={"24px"} fontWeight={"bold"}>
-          [LULULOLA SHOW] TUẤN HƯNG & TRẦN MẠNH CƯỜNG | GẤP ĐÔI YÊU THƯƠNG
+          {event.name}
         </Typography>
         <Typography
           mt={"8px"}
@@ -31,7 +30,7 @@ function EventItem() {
           lineHeight={"20px"}
           color="rgb(42, 45, 52)"
         >
-          15/12/2023
+          {event.timeStart} - {event.timeEnd}
         </Typography>
         <Typography
           mt={"8px"}
@@ -39,7 +38,7 @@ function EventItem() {
           lineHeight={"20px"}
           color="rgb(130, 139, 160)"
         >
-          Live Music
+          {listTypeEvent[event?.typeEvent - 1]?.label}
         </Typography>
       </Stack>
     </Box>
