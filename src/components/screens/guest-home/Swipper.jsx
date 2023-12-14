@@ -67,7 +67,7 @@ export default function Swipper() {
           <Box
             component={"img"}
             borderRadius={"8px"}
-            src={"/img/swipper1.jpg"}
+            src={"/img/swipper4.jpg"}
             width={"86%"}
             height={384}
             sx={{ objectFit: "cover", objectPosition: "center" }}
@@ -77,7 +77,7 @@ export default function Swipper() {
           <Box
             component={"img"}
             borderRadius={"8px"}
-            src={"/img/swipper2.jpg"}
+            src={"/img/swipper5.jpg"}
             width={"86%"}
             height={384}
             sx={{ objectFit: "cover", objectPosition: "center" }}
@@ -90,7 +90,7 @@ export default function Swipper() {
             width={"86%"}
             height={384}
             sx={{ objectFit: "cover", objectPosition: "center" }}
-            src={"/img/swipper3.jpg"}
+            src={"/img/swipper6.jpg"}
           />
         </SwiperSlide>
       </SwipperCustom>

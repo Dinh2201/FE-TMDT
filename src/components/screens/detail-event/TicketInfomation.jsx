@@ -119,12 +119,12 @@ function TicketInfomation({ ticket, eventId }) {
                 <Grid container spacing={2}>
                   <Grid xs={6} item>
                     <Typography variant="subtitle2">
-                      Ngày mớ bán: {t?.timeTicketStart}
+                      Ngày mở bán: {t?.timeTicketStart}
                     </Typography>
                   </Grid>
                   <Grid xs={6} item>
                     <Typography variant="subtitle2">
-                      Ngày mớ bán: {t?.timeTicketEnd}
+                      Ngày ngừng bán: {t?.timeTicketEnd}
                     </Typography>
                   </Grid>
                   <Grid xs={6} item>
@@ -167,8 +167,8 @@ function TicketInfomation({ ticket, eventId }) {
                           Chưa đến thời gian bán vé
                         </Button>
                       ) : moment(moment().format("YYYY-MM-DD")).isAfter(
-                          t?.timeTicketEnd
-                        ) ? (
+                        t?.timeTicketEnd
+                      ) ? (
                         <Button variant="contained">
                           Đã hết thời gian ngày bán vé
                         </Button>
